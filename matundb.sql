@@ -18,28 +18,6 @@ USE `matundb`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `orged`
---
-
-DROP TABLE IF EXISTS `orged`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `orged` (
-  `rid` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`rid`)
-) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='организациски единици';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `orged`
---
-
-LOCK TABLES `orged` WRITE;
-/*!40000 ALTER TABLE `orged` DISABLE KEYS */;
-/*!40000 ALTER TABLE `orged` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `valuti`
 --
 
@@ -59,50 +37,6 @@ CREATE TABLE `valuti` (
 LOCK TABLES `valuti` WRITE;
 /*!40000 ALTER TABLE `valuti` DISABLE KEYS */;
 /*!40000 ALTER TABLE `valuti` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `artsos`
---
-
-DROP TABLE IF EXISTS `artsos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `artsos` (
-  `rid` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`rid`)
-) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COMMENT='моментална состојба на магацини';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `artsos`
---
-
-LOCK TABLES `artsos` WRITE;
-/*!40000 ALTER TABLE `artsos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `artsos` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `artkat`
---
-
-DROP TABLE IF EXISTS `artkat`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `artkat` (
-  `rid` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`rid`)
-) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='каталошки броеви на ниво на материјал+производител';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `artkat`
---
-
-LOCK TABLES `artkat` WRITE;
-/*!40000 ALTER TABLE `artkat` DISABLE KEYS */;
-/*!40000 ALTER TABLE `artkat` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -147,28 +81,6 @@ CREATE TABLE `dokg` (
 LOCK TABLES `dokg` WRITE;
 /*!40000 ALTER TABLE `dokg` DISABLE KEYS */;
 /*!40000 ALTER TABLE `dokg` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `doks`
---
-
-DROP TABLE IF EXISTS `doks`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `doks` (
-  `rid` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`rid`)
-) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='документи ставки';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `doks`
---
-
-LOCK TABLES `doks` WRITE;
-/*!40000 ALTER TABLE `doks` DISABLE KEYS */;
-/*!40000 ALTER TABLE `doks` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -238,6 +150,223 @@ LOCK TABLES `klg` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `dblog`
+--
+
+DROP TABLE IF EXISTS `dblog`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `dblog` (
+  `rid` int(11) NOT NULL AUTO_INCREMENT,
+  `iddbusr` varchar(6) COLLATE cp1251_general_cs NOT NULL DEFAULT '',
+  `login` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `logout` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `terminal` varchar(60) COLLATE cp1251_general_cs NOT NULL DEFAULT '',
+  PRIMARY KEY (`rid`)
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='лог на пристапи во апликацијата';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `dblog`
+--
+
+LOCK TABLES `dblog` WRITE;
+/*!40000 ALTER TABLE `dblog` DISABLE KEYS */;
+/*!40000 ALTER TABLE `dblog` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pflica`
+--
+
+DROP TABLE IF EXISTS `pflica`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pflica` (
+  `rid` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`rid`)
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COMMENT='физички и правни лица';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pflica`
+--
+
+LOCK TABLES `pflica` WRITE;
+/*!40000 ALTER TABLE `pflica` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pflica` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `dbprm`
+--
+
+DROP TABLE IF EXISTS `dbprm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `dbprm` (
+  `iddbprm` int(11) NOT NULL AUTO_INCREMENT,
+  `cod` varchar(20) COLLATE cp1251_general_cs NOT NULL DEFAULT '',
+  `dsc` varchar(100) COLLATE cp1251_general_cs NOT NULL DEFAULT '',
+  `usr` char(17) COLLATE cp1251_general_cs NOT NULL DEFAULT '',
+  `hdn` bit(1) NOT NULL DEFAULT b'0',
+  `autold` bit(1) NOT NULL DEFAULT b'0',
+  `valc` varchar(255) COLLATE cp1251_general_cs NOT NULL DEFAULT '',
+  `vali` int(11) NOT NULL DEFAULT '0',
+  `valn` decimal(20,4) NOT NULL DEFAULT '0.0000',
+  `valf` float NOT NULL DEFAULT '0',
+  `vall` bit(1) NOT NULL DEFAULT b'0',
+  `vald` date NOT NULL DEFAULT '0000-00-00',
+  `valt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `changed` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `accessed` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`iddbprm`),
+  UNIQUE KEY `sid` (`cod`,`usr`)
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='параметри за апликација';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `dbprm`
+--
+
+LOCK TABLES `dbprm` WRITE;
+/*!40000 ALTER TABLE `dbprm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `dbprm` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `hrono`
+--
+
+DROP TABLE IF EXISTS `hrono`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hrono` (
+  `rid` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`rid`)
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='хронологија на настани во магацините';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hrono`
+--
+
+LOCK TABLES `hrono` WRITE;
+/*!40000 ALTER TABLE `hrono` DISABLE KEYS */;
+/*!40000 ALTER TABLE `hrono` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orged`
+--
+
+DROP TABLE IF EXISTS `orged`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `orged` (
+  `rid` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`rid`)
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='организациски единици';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orged`
+--
+
+LOCK TABLES `orged` WRITE;
+/*!40000 ALTER TABLE `orged` DISABLE KEYS */;
+/*!40000 ALTER TABLE `orged` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `artsos`
+--
+
+DROP TABLE IF EXISTS `artsos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `artsos` (
+  `rid` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`rid`)
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COMMENT='моментална состојба на магацини';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `artsos`
+--
+
+LOCK TABLES `artsos` WRITE;
+/*!40000 ALTER TABLE `artsos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `artsos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `artkat`
+--
+
+DROP TABLE IF EXISTS `artkat`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `artkat` (
+  `rid` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`rid`)
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='каталошки броеви на ниво на материјал+производител';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `artkat`
+--
+
+LOCK TABLES `artkat` WRITE;
+/*!40000 ALTER TABLE `artkat` DISABLE KEYS */;
+/*!40000 ALTER TABLE `artkat` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tipcen`
+--
+
+DROP TABLE IF EXISTS `tipcen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tipcen` (
+  `rid` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`rid`)
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='типови на цени';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tipcen`
+--
+
+LOCK TABLES `tipcen` WRITE;
+/*!40000 ALTER TABLE `tipcen` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tipcen` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `doks`
+--
+
+DROP TABLE IF EXISTS `doks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `doks` (
+  `rid` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`rid`)
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='документи ставки';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `doks`
+--
+
+LOCK TABLES `doks` WRITE;
+/*!40000 ALTER TABLE `doks` DISABLE KEYS */;
+/*!40000 ALTER TABLE `doks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `kls`
 --
 
@@ -282,70 +411,38 @@ LOCK TABLES `magaci` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `pflica`
+-- Table structure for table `dbusr`
 --
 
-DROP TABLE IF EXISTS `pflica`;
+DROP TABLE IF EXISTS `dbusr`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `pflica` (
+CREATE TABLE `dbusr` (
   `rid` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`rid`)
-) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COMMENT='физички и правни лица';
+  `iddbuser` varchar(6) COLLATE cp1251_general_cs NOT NULL DEFAULT '',
+  `ime` varchar(60) COLLATE cp1251_general_cs NOT NULL DEFAULT '',
+  `prezime` varchar(70) COLLATE cp1251_general_cs NOT NULL DEFAULT '',
+  `profil` varchar(20) COLLATE cp1251_general_cs NOT NULL DEFAULT '',
+  `pass` varchar(45) COLLATE cp1251_general_cs NOT NULL DEFAULT '',
+  `lastin` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `terminal` varchar(60) COLLATE cp1251_general_cs NOT NULL DEFAULT '',
+  PRIMARY KEY (`rid`),
+  UNIQUE KEY `iddbuser_UNIQUE` (`iddbuser`)
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='Корисници на апликација';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pflica`
+-- Dumping data for table `dbusr`
 --
 
-LOCK TABLES `pflica` WRITE;
-/*!40000 ALTER TABLE `pflica` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pflica` ENABLE KEYS */;
+LOCK TABLES `dbusr` WRITE;
+/*!40000 ALTER TABLE `dbusr` DISABLE KEYS */;
+/*!40000 ALTER TABLE `dbusr` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `hrono`
+-- Dumping routines for database 'matundb'
 --
-
-DROP TABLE IF EXISTS `hrono`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `hrono` (
-  `rid` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`rid`)
-) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='хронологија на настани во магацините';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `hrono`
---
-
-LOCK TABLES `hrono` WRITE;
-/*!40000 ALTER TABLE `hrono` DISABLE KEYS */;
-/*!40000 ALTER TABLE `hrono` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tipcen`
---
-
-DROP TABLE IF EXISTS `tipcen`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tipcen` (
-  `rid` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`rid`)
-) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='типови на цени';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tipcen`
---
-
-LOCK TABLES `tipcen` WRITE;
-/*!40000 ALTER TABLE `tipcen` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tipcen` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -356,4 +453,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-03-10 23:43:22
+-- Dump completed on 2011-03-19 14:42:52
