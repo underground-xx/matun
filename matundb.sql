@@ -26,7 +26,11 @@ DROP TABLE IF EXISTS `valuti`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `valuti` (
   `rid` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`rid`)
+  `cod` char(3) COLLATE cp1251_general_cs NOT NULL DEFAULT '',
+  `dsc` varchar(50) COLLATE cp1251_general_cs NOT NULL DEFAULT '',
+  `drz` char(2) COLLATE cp1251_general_cs NOT NULL DEFAULT '',
+  PRIMARY KEY (`rid`),
+  UNIQUE KEY `cod_UNIQUE` (`cod`)
 ) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='валути';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -62,25 +66,25 @@ LOCK TABLES `art` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `dokg`
+-- Table structure for table `arhdoks`
 --
 
-DROP TABLE IF EXISTS `dokg`;
+DROP TABLE IF EXISTS `arhdoks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `dokg` (
+CREATE TABLE `arhdoks` (
   `rid` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`rid`)
-) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='документи генералии';
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='архива на промени во документи - ставки';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `dokg`
+-- Dumping data for table `arhdoks`
 --
 
-LOCK TABLES `dokg` WRITE;
-/*!40000 ALTER TABLE `dokg` DISABLE KEYS */;
-/*!40000 ALTER TABLE `dokg` ENABLE KEYS */;
+LOCK TABLES `arhdoks` WRITE;
+/*!40000 ALTER TABLE `arhdoks` DISABLE KEYS */;
+/*!40000 ALTER TABLE `arhdoks` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -106,25 +110,25 @@ LOCK TABLES `cen` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tipdok`
+-- Table structure for table `doks`
 --
 
-DROP TABLE IF EXISTS `tipdok`;
+DROP TABLE IF EXISTS `doks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tipdok` (
+CREATE TABLE `doks` (
   `rid` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`rid`)
-) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='типови документи';
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='документи ставки';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tipdok`
+-- Dumping data for table `doks`
 --
 
-LOCK TABLES `tipdok` WRITE;
-/*!40000 ALTER TABLE `tipdok` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tipdok` ENABLE KEYS */;
+LOCK TABLES `doks` WRITE;
+/*!40000 ALTER TABLE `doks` DISABLE KEYS */;
+/*!40000 ALTER TABLE `doks` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -184,7 +188,29 @@ DROP TABLE IF EXISTS `pflica`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pflica` (
   `rid` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`rid`)
+  `cod` char(6) NOT NULL DEFAULT '',
+  `dsc1` varchar(100) NOT NULL DEFAULT '',
+  `dsc2` varchar(100) NOT NULL DEFAULT '',
+  `embg` char(13) NOT NULL DEFAULT '',
+  `edb` char(13) NOT NULL DEFAULT '',
+  `pasos` varchar(30) NOT NULL DEFAULT '',
+  `eori` varchar(20) NOT NULL DEFAULT '',
+  `tip` char(2) NOT NULL DEFAULT '',
+  `adr` varchar(70) NOT NULL DEFAULT '',
+  `grad` varchar(35) NOT NULL DEFAULT '',
+  `post` char(6) NOT NULL DEFAULT '',
+  `drzava` varchar(50) NOT NULL DEFAULT '',
+  `konlic` varchar(100) NOT NULL DEFAULT '',
+  `tel1` char(20) NOT NULL DEFAULT '',
+  `tel2` char(20) NOT NULL DEFAULT '',
+  `faks` char(20) NOT NULL DEFAULT '',
+  `email` varchar(60) NOT NULL DEFAULT '',
+  `banka` varchar(50) NOT NULL DEFAULT '',
+  `smetka` char(15) NOT NULL DEFAULT '',
+  `regs` varchar(50) NOT NULL DEFAULT '' COMMENT 'registracija',
+  `isbank` bit(1) NOT NULL DEFAULT b'0',
+  PRIMARY KEY (`rid`),
+  UNIQUE KEY `cod_UNIQUE` (`cod`)
 ) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COMMENT='физички и правни лица';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -257,6 +283,28 @@ LOCK TABLES `hrono` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `dokg`
+--
+
+DROP TABLE IF EXISTS `dokg`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `dokg` (
+  `rid` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`rid`)
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='документи генералии';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `dokg`
+--
+
+LOCK TABLES `dokg` WRITE;
+/*!40000 ALTER TABLE `dokg` DISABLE KEYS */;
+/*!40000 ALTER TABLE `dokg` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `orged`
 --
 
@@ -323,6 +371,28 @@ LOCK TABLES `artkat` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `arhdokg`
+--
+
+DROP TABLE IF EXISTS `arhdokg`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `arhdokg` (
+  `rid` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`rid`)
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='архива на промени во документи - генералии';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `arhdokg`
+--
+
+LOCK TABLES `arhdokg` WRITE;
+/*!40000 ALTER TABLE `arhdokg` DISABLE KEYS */;
+/*!40000 ALTER TABLE `arhdokg` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tipcen`
 --
 
@@ -345,25 +415,25 @@ LOCK TABLES `tipcen` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `doks`
+-- Table structure for table `tipdok`
 --
 
-DROP TABLE IF EXISTS `doks`;
+DROP TABLE IF EXISTS `tipdok`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `doks` (
+CREATE TABLE `tipdok` (
   `rid` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`rid`)
-) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='документи ставки';
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_cs COMMENT='типови документи';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `doks`
+-- Dumping data for table `tipdok`
 --
 
-LOCK TABLES `doks` WRITE;
-/*!40000 ALTER TABLE `doks` DISABLE KEYS */;
-/*!40000 ALTER TABLE `doks` ENABLE KEYS */;
+LOCK TABLES `tipdok` WRITE;
+/*!40000 ALTER TABLE `tipdok` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tipdok` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -453,4 +523,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-03-19 14:42:52
+-- Dump completed on 2011-03-20 21:50:06
